@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bath Tea Collection</title>
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/products.css">
+</head>
+<body>
+
+<div class="product-page">
+
+<h1>Bath Tea Collection</h1>
+
+<img src="./products img/teabanner.png" alt="Bath Tea Banner" class="banner">
+
+
+<h2>Available Blends</h2>
+
+<div class="flavours">
+
+<div class="flavour">
+  <img src="./products img/citrus.png" alt="Citrus Bath Tea">
+  <h3>Citrus Bath Tea</h3>
+  <p>Refreshing citrus soak.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Citrus Bath Tea',80)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/rose.png" alt="Rose Bath Tea">
+  <h3>Rose Bath Tea</h3>
+  <p>Luxurious floral bath experience.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Rose Bath Tea',80)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/floral.png" alt="Floral Bath Tea">
+  <h3>Floral Bath Tea</h3>
+  <p>Botanical wellness blend.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Floral Bath Tea',80)">Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<div style="text-align:center; margin:30px;">
+  <a href="cart.html" class="btn">🛒 View Cart</a>
+  <a href="index.html" class="btn">← Back Home</a>
+</div>
+
+<script>
+
+function addToCart(name, price){
+
+    let cart =
+        JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingItem =
+        cart.find(item => item.name === name);
+
+    if(existingItem){
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
+
+    alert(name + " added to cart!");
+}
+
+</script>
+</body>
+</html>

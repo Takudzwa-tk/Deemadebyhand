@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Infusions</title>
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/products.css">
+</head>
+<body>
+
+<div class="product-page">
+
+<h1>Infusions Collection</h1>
+
+<img src="./products img/infusions banner.png" alt="" class="banner">
+
+<h2>Available Flavours</h2>
+
+
+
+<div class="flavours">
+<div class="flavour">
+    <img src="./products img/rosella.jpeg" alt="Rosella Tea">
+
+    <h3>Rosella</h3>
+    <p>Refreshing floral infusion.</p>
+    <p>40 Tea Bags</p>
+
+    <p class="price">R80</p>
+
+    <button onclick="addToCart('Rosella',80)">
+        Add to Cart
+    </button>
+</div>
+
+
+<div class="flavour">
+ <img src="./products img/chamomile.jpeg" alt="Chamomile">   
+ <h3>Chamomile</h3>
+ <p>Calming and relaxing blend.</p>
+ <p>40 Tea Bags</p>
+ <p class="price">R80</p>
+
+<button onclick="addToCart('Chamomile',80)">
+  Add to Cart
+</button>
+</div>
+
+<div class="flavour">
+ <img src="./products img/lemon n ginger.jpeg" alt="Lemon and Ginger">   
+  <h3>Lemon & Ginger</h3>
+  <p>Immune support infusion.</p>
+ <p>40 Tea Bags</p>
+ <p class="price">R80</p>
+
+<button onclick="addToCart('Lemon & Ginger',80)">
+Add to Cart
+</button>
+</div>
+
+<div class="flavour">
+<img src="./products img/lemongrass n chamomile.jpeg" alt="Lemongrass n chamomile">    
+<h3>Lemongrass & Chamomile</h3>
+<p>Light citrus herbal blend.</p>
+<p>40 Tea Bags</p>
+<p class="price">R80</p>
+
+<button onclick="addToCart('Lemongrass & Chamomile',80)">
+Add to Cart
+</button>
+</div>
+
+<div class="flavour">
+<img src="./products img/rooibosngingernchamomile.jpeg" alt="Rooibos Ginger & Chamomile">5
+<h3>Rooibos Ginger & Chamomile</h3>
+<p>South African wellness blend.</p>
+<p>40 Tea Bags</p>
+<p class="price">R80</p>
+
+<button onclick="addToCart('Rooibos, Ginger & Chamomile',80)">
+Add to Cart
+</button>
+</div>
+
+</div>
+
+</div>
+<div style="text-align:center; margin:30px;">
+<a href="cart.html" class="btn"> View Cart</a>
+<a href="index.html" class="btn"> Back Home</a>
+</div>
+
+<script>
+
+function addToCart(name, price){
+
+    let cart =
+        JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingItem =
+        cart.find(item => item.name === name);
+
+    if(existingItem){
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
+
+    alert(name + " added to cart!");
+}
+
+</script>
+</body>
+</html>

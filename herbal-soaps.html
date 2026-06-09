@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Herbal Soaps</title>
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/products.css">
+</head>
+<body>
+
+<div class="product-page">
+
+<h1>Herbal Soaps Collection</h1>
+
+<img src="./products img/soapbanner.png" alt="Herbal Soaps Banner" class="banner">
+
+<h2>Available Soaps</h2>
+
+<div class="flavours">
+
+<div class="flavour">
+  <img src="./products img/neem.png" alt="Neem Soap">
+  <h3>Neem Soap</h3>
+  <p>Natural cleansing soap.</p>
+  <p>One Bar</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Neem Soap',150)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/Honey Glow.png" alt="Honey Glow Soap">   
+  <h3>Honey Glow Soap</h3>
+  <p>Moisturising and nourishing.</p>
+  <p>One Bar</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Honey Glow Soap',150)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/moringa.png" alt="Moringa Soap">
+  <h3>Moringa Soap</h3>
+  <p>Rich in natural antioxidants.</p>
+  <p>One Bar</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Moringa Soap',150)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/Chamomile & Oat.png" alt="Chamomile & Oat Soap">
+  <h3>Chamomile & Oat Soap</h3>
+  <p>Gentle skin care formula.</p>
+  <p>One Bar</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Chamomile & Oat Soap',150)">Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<div style="text-align:center; margin:30px;">
+  <a href="cart.html" class="btn"> View Cart</a>
+  <a href="index.html" class="btn"> Back Home</a>
+</div>
+
+<script>
+
+function addToCart(name, price){
+
+    let cart =
+        JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingItem =
+        cart.find(item => item.name === name);
+
+    if(existingItem){
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
+
+    alert(name + " added to cart!");
+}
+
+</script>
+</body>
+</html>

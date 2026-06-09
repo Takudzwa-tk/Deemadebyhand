@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hibiscus Collection</title>
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/products.css">
+</head>
+<body>
+
+<h1 class="page-title">Hibiscus Collection</h1>
+<img src="./products img/hibiscusbanner.png" alt="Hibiscus Banner" class="banner">
+
+
+<div class="flavours">
+
+<div class="flavour">
+<img src="./products img/rosella.jpeg" alt="Scarlet Harmony">
+<h3>Scarlet Harmony</h3>
+<p>Sweet and floral hibiscus blend.</p>
+<p>40 Tea Bags</p>
+<p class="price">R80</p>
+
+<button onclick="addToCart('Scarlet Harmony',80)">
+Add to Cart
+</button>
+</div>
+
+<div class="flavour">
+<img src="./products img/comforting.jpeg" alt="comforting">    
+<h3>Comforting Blend</h3>
+<p>Warm soothing herbal tea.</p>
+<p>40 Tea Bags</p>
+<p class="price">R80</p>
+
+<button onclick="addToCart('Comforting Blend',80)">
+Add to Cart
+</button>
+</div>
+
+<div class="flavour">
+<img src="./products img/calming.jpeg" alt="Calming blend">    
+<h3>Calming Blend</h3>
+<p>Designed for relaxation.</p>
+<p>40 Tea Bags</p>
+<p class="price">R80</p>
+
+<button onclick="addToCart('Calming Blend',80)">
+Add to Cart
+</button>
+</div>
+
+<div class="flavour">
+<img src="./products img/familiar.jpeg" alt="Familiar blend">
+<h3>Familiar Blend</h3>
+<p>Traditional hibiscus flavour.</p>
+<p>40 Tea Bags</p>
+<p class="price">R80</p>
+
+<button onclick="addToCart('Familiar Blend',80)">
+Add to Cart
+</button>
+</div>
+
+</div>
+
+<div style="text-align:center; margin:30px;">
+<a href="cart.html" class="btn"> View Cart</a>
+<a href="index.html" class="btn"> Back Home</a>
+</div>
+
+<script>
+
+function addToCart(name, price){
+
+    let cart =
+        JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingItem =
+        cart.find(item => item.name === name);
+
+    if(existingItem){
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
+
+    alert(name + " added to cart!");
+}
+
+</script>
+
+</body>
+</html>

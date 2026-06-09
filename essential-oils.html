@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essential Oils</title>
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/products.css">
+</head>
+<body>
+
+<div class="product-page">
+
+<h1>Essential Oils Collection</h1>
+
+<img src="./products img/oilbanner1.png" alt="Essential Oils Banner" class="banner">
+
+<h2>Available Oils</h2>
+
+<div class="flavours">
+
+<div class="flavour">
+  <img src="./products img/lavender.png" alt="Lavender Oil">
+  <h3>Lavender Oil</h3>
+  <p>Promotes relaxation.</p>
+  <p>One Bottle</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Lavender Oil',150)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/peppermint.png" alt="Peppermint Oil">
+  <h3>Peppermint Oil</h3>
+  <p>Refreshing and energising.</p>
+  <p>One Bottle</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Peppermint Oil',150)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/eucalyptus.png" alt="Eucalyptus Oil">
+  <h3>Eucalyptus Oil</h3>
+  <p>Fresh and invigorating.</p>
+  <p>One Bottle</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Eucalyptus Oil',150)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/Sweet Orange.png" alt="Sweet Orange Oil">
+  <h3>Sweet Orange Oil</h3>
+  <p>Bright citrus aroma.</p>
+  <p>One Bottle</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Sweet Orange Oil',150)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/Sweet Almond.png" alt="Sweet Almond Oil">
+  <h3>Sweet Almond Oil</h3>
+  <p>Nourishing carrier oil.</p>
+  <p>One Bottle</p>
+  <p class="price">R150</p>
+  <button onclick="addToCart('Sweet Almond Oil',150)">Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<div style="text-align:center; margin:30px;">
+  <a href="cart.html" class="btn">🛒 View Cart</a>
+  <a href="index.html" class="btn">← Back Home</a>
+</div>
+
+<script>
+
+function addToCart(name, price){
+
+    let cart =
+        JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingItem =
+        cart.find(item => item.name === name);
+
+    if(existingItem){
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
+
+    alert(name + " added to cart!");
+}
+
+</script>
+</body>
+</html>

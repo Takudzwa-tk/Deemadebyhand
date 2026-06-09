@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bath Salts Collection</title>
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/products.css">
+</head>
+<body>
+
+<div class="product-page">
+
+<h1>Bath Salts Collection</h1>
+
+<img src="./products img/saltsbanner.png" alt="Bath Salts Banner" class="banner">
+
+<h2>Available Blends</h2>
+
+<div class="flavours">
+
+<div class="flavour">
+  <img src="./products img/lavender & chamomile.png" alt="Lavender Serenity">
+  <h3>Lavender Serenity</h3>
+  <p>Relaxing bath soak.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Lavender Serenity',80)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/rose.png" alt="Rose Bloom">
+  <h3>Rose Bloom</h3>
+  <p>Floral aromatic bath salts.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Rose Bloom',80)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/relaxing blend.png" alt="Relaxing Blend">
+  <h3>Relaxing Blend</h3>
+  <p>Perfect for winding down.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Relaxing Blend',80)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/detox & refresh.png" alt="Detox & Refresh">
+  <h3>Detox & Refresh</h3>
+  <p>Cleansing and revitalising soak.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Detox & Refresh',80)">Add to Cart</button>
+</div>
+
+<div class="flavour">
+  <img src="./products img/rose.png" alt="Hibiscus Bliss">
+  <h3>Hibiscus Bliss</h3>
+  <p>Refreshing botanical bath.</p>
+  <p class="price">R80</p>
+  <button onclick="addToCart('Hibiscus Bliss',80)">Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<div style="text-align:center; margin:30px;">
+  <a href="cart.html" class="btn">🛒 View Cart</a>
+  <a href="index.html" class="btn">← Back Home</a>
+</div>
+
+<script>
+
+function addToCart(name, price){
+
+    let cart =
+        JSON.parse(localStorage.getItem('cart')) || [];
+
+    const existingItem =
+        cart.find(item => item.name === name);
+
+    if(existingItem){
+
+        existingItem.quantity++;
+
+    } else {
+
+        cart.push({
+            name: name,
+            price: price,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem(
+        'cart',
+        JSON.stringify(cart)
+    );
+
+    alert(name + " added to cart!");
+}
+
+</script>
+</body>
+</html>

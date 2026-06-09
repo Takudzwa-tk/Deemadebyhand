@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="./styles/checkout.css">
+</head>
+<body>
+
+<div class="checkout-container">
+
+    <h1>Checkout</h1>
+
+    <div class="total-box">
+        <h2 id="totalAmount">Total: R0</h2>
+    </div>
+
+    <div class="payment-options">
+
+        <button class="eft-btn" onclick="showEFT()">
+            Pay via EFT
+        </button>
+
+        <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+            Order via WhatsApp
+        </button>
+
+    </div>
+
+    <a href="cart.html" class="back-btn">
+        ← Back to Cart
+    </a>
+
+</div>
+
+
+<div id="eftModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeEFT()">
+            &times;
+        </span>
+
+        <h2>EFT Payment Details</h2>
+
+        <p><strong>Bank:</strong> FNB</p>
+
+        <p><strong>Account Name:</strong> Tea Infusions</p>
+
+        <p><strong>Account Number:</strong> 123456789</p>
+
+        <p><strong>Branch Code:</strong> 250655</p>
+
+        <hr>
+
+        <h3>Your Order</h3>
+
+        <div id="eft-order-summary"></div>
+
+        <h3 id="eft-total"></h3>
+
+        <hr>
+
+        <p class="instruction">
+            After making payment, please send:
+        </p>
+
+        <ul>
+            <li>Proof of Payment (POP)</li>
+            <li>Your Full Name</li>
+            <li>Order details</li>
+            <li>Your Delivery Address</li>
+        </ul>
+
+        <p class="whatsapp-number">
+            Send to WhatsApp:
+            <strong>+27716949601</strong>
+        </p>
+
+        <button class="copy-btn" onclick="copyOrder()">
+            Copy Order Details
+        </button>
+
+        <button class="send-btn" onclick="sendPOPWhatsApp()">
+            Send POP via WhatsApp
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+let cart =
+    JSON.parse(localStorage.getItem('cart')) || [];
+
+let total = 0;
+
+cart.forEach(item => {
+    total += item.price * item.quantity;
+});
+
+document.getElementById('totalAmount')
+    .textContent = `Total: R${total}`;
+
+function showEFT(){
+
+    const summary =
+        document.getElementById('eft-order-summary');
+
+    summary.innerHTML = '';
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        total += item.price * item.quantity;
+
+        summary.innerHTML += `
+            <p>
+                ${item.name}
+                x ${item.quantity}
+                = R${item.price * item.quantity}
+            </p>
+        `;
+    });
+
+    document.getElementById('eft-total')
+        .textContent = `Total: R${total}`;
+
+    document.getElementById('eftModal')
+        .style.display = 'flex';
+}
+
+function closeEFT(){
+    document.getElementById('eftModal')
+        .style.display = 'none';
+}
+
+function copyOrder(){
+
+    let orderText =
+        "Tea Infusions Order\n\n";
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        total += item.price * item.quantity;
+
+        orderText +=
+            `${item.name} x ${item.quantity} - R${item.price * item.quantity}\n`;
+    });
+
+    orderText += `\nTotal: R${total}`;
+
+    navigator.clipboard.writeText(orderText);
+
+    alert("Order details copied!");
+}
+
+function sendPOPWhatsApp(){
+
+    let message =
+        "Hello, I have completed an EFT payment.%0A%0A";
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        total += item.price * item.quantity;
+
+        message +=
+            `${item.name} x ${item.quantity} - R${item.price * item.quantity}%0A`;
+    });
+
+    message += `%0ATotal: R${total}`;
+
+    window.open(
+        'https://wa.me/+27716949601?text=' + message,
+        '_blank'
+    );
+}
+
+function sendWhatsAppOrder(){
+
+    let message =
+        "Hello, I would like to place an order:%0A%0A";
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        total += item.price * item.quantity;
+
+        message +=
+            `${item.name} x ${item.quantity} - R${item.price * item.quantity}%0A`;
+    });
+
+    message += `%0ATotal: R${total}`;
+
+    window.open(
+        'https://wa.me/+27716949601?text=' + message,
+        '_blank'
+    );
+
+    localStorage.removeItem('cart');
+    cart = [];
+
+}
+
+</script>
+
+</body>
+</html>
